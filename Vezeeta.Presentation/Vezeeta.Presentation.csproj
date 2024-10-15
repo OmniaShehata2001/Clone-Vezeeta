@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Vezeeta.Application\Vezeeta.Application.csproj" />
     <ProjectReference Include="..\Vezeeta.Context\Vezeeta.Context.csproj" />
+    <ProjectReference Include="..\Vezeeta.Infrastucture\Vezeeta.Infrastucture.csproj" />
     <ProjectReference Include="..\Vezeeta.Models\Vezeeta.Models.csproj" />
   </ItemGroup>
 

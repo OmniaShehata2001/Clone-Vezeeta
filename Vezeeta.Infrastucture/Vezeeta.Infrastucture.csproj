@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Vezeeta.Application\Vezeeta.Application.csproj" />
+    <ProjectReference Include="..\Vezeeta.Context\Vezeeta.Context.csproj" />
+  </ItemGroup>
+
 </Project>

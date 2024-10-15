@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contract\" />
-    <Folder Include="Mapper\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <ProjectReference Include="..\Vezeeta.Dtos\Vezeeta.Dtos.csproj" />
+    <ProjectReference Include="..\Vezeeta.Models\Vezeeta.Models.csproj" />
   </ItemGroup>
 
 </Project>
