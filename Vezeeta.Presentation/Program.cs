@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Vezeeta.Application.Contract.CountriesRepositries;
+using Vezeeta.Application.Contract.SpecialtyRepositories;
 using Vezeeta.Application.Services.Countries_Services;
+using Vezeeta.Application.Services.Specialty_Services;
 using Vezeeta.Context;
 using Vezeeta.Infrastucture.CountriesRepos;
+using Vezeeta.Infrastucture.SpecialtyRepos;
 using Vezeeta.Models;
 
 namespace Vezeeta.Presentation
@@ -28,6 +31,8 @@ namespace Vezeeta.Presentation
             builder.Services.AddScoped<ICountriesRepository, CountriesRepositories>();
             builder.Services.AddScoped<ICountriesServices , CountriesServices>();
             builder.Services.AddScoped<ICountryImagesRepository,CountriesImagesRepository>();
+            builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+            builder.Services.AddScoped<ISpecialtyServices, SpecialtyServices>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
