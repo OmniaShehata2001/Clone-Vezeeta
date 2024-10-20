@@ -1,13 +1,23 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Vezeeta.Application.Contract.AppointmentRepositories;
 using Vezeeta.Application.Contract.CountriesRepositries;
+using Vezeeta.Application.Contract.DoctorRepositories;
+using Vezeeta.Application.Contract.ReviewsRepositories;
 using Vezeeta.Application.Contract.SpecialtyRepositories;
+using Vezeeta.Application.Contract.WorkingPlaceRepositories;
 using Vezeeta.Application.Services.Countries_Services;
+using Vezeeta.Application.Services.DoctorServices;
+using Vezeeta.Application.Services.ReviewsServices;
 using Vezeeta.Application.Services.Specialty_Services;
 using Vezeeta.Context;
+using Vezeeta.Infrastucture.AppointmentRepos;
 using Vezeeta.Infrastucture.CountriesRepos;
+using Vezeeta.Infrastucture.DoctorRepos;
+using Vezeeta.Infrastucture.ReviewsRepos;
 using Vezeeta.Infrastucture.SpecialtyRepos;
+using Vezeeta.Infrastucture.WorkingPlaceRepos;
 using Vezeeta.Models;
 
 namespace Vezeeta.Presentation
@@ -33,6 +43,22 @@ namespace Vezeeta.Presentation
             builder.Services.AddScoped<ICountryImagesRepository,CountriesImagesRepository>();
             builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
             builder.Services.AddScoped<ISpecialtyServices, SpecialtyServices>();
+            builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+            builder.Services.AddScoped<IDoctorServices, DoctorServices>();
+            builder.Services.AddScoped<IWorkingPlaceRepository,WorkingPlaceRepository>();
+            builder.Services.AddScoped<IDoctorWorkingPlaceRepository,DoctorWorkingPlaceRepository>();
+            builder.Services.AddScoped<ISubSpecialtyRepository, SubSpecialtyRepository>();
+            builder.Services.AddScoped<IDoctorSubSpecialtyRepository,DoctorSubSpecialtyRepository>();
+            builder.Services.AddScoped<IAppointmentRepository,AppointmentRepository>();
+            builder.Services.AddScoped<ITimeSlotRepository, TimeSlotRepository>();
+            builder.Services.AddScoped<IDoctorReviewsRepository,DoctorReviewsRepository>();
+            builder.Services.AddScoped<IDoctorReviewesServices,DoctorReviewsServices>();
+            builder.Services.AddScoped<IWorkingPlaceImagesRepository,WorkingPlaceImagesRepository>();
+
+
+
+
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
