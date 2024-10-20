@@ -66,8 +66,7 @@ namespace Vezeeta.Application.Services.Specialty_Services
             var SpecialtiesDto = Specialties.Skip(Items * (PageNumber - 1)).Take(Items).Select(s => new SpecialtyDto
                               {
                                   Id = s.Id,
-                                  SpecName = s.SpecName,
-                                  IsDeleted = s.IsDeleted
+                                  SpecName = s.SpecName
                               });
             return new ResultDataList<SpecialtyDto>
             {

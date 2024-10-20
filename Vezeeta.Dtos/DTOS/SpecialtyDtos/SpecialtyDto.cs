@@ -10,6 +10,5 @@ namespace Vezeeta.Dtos.DTOS.SpecialtyDtos
     {
         public int Id { get; set; }
         public string SpecName { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }
