@@ -10,7 +10,7 @@ namespace Vezeeta.Application.Services.DoctorServices
 {
     public interface IDoctorServices
     {
-        Task<ResultView<DoctorWithImageDto>> Create(DoctorWithImageDto Doctordto);
+        Task<ResultView<DoctorDto>> Create(DoctorDto Doctordto);
         //Task<ResultView<DoctorDto>> Update(DoctorDto Doctordto);
         //Task<ResultView<DoctorDto>> Delete (int DoctorId);
         //Task<ResultView<DoctorDto>> GetOne (int DoctorId);

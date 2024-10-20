@@ -38,13 +38,13 @@ namespace Vezeeta.Application.Services.DoctorServices
             _appointmentRepository = appointmentRepository;
             _timeSlotRepository = timeSlotRepository;
         }
-        public async Task<ResultView<DoctorWithImageDto>> Create(DoctorWithImageDto Doctordto)
+        public async Task<ResultView<DoctorDto>> Create(DoctorDto Doctordto)
         {
             var DoctorExist = (await _doctorRepository.GetAllasync())
                 .FirstOrDefault(s=>s.Name == Doctordto.Name && s.SSN == Doctordto.SSN && s.IsDeleted == false); 
             if(DoctorExist is not null)
             {
-                return new ResultView<DoctorWithImageDto>
+                return new ResultView<DoctorDto>
                 {
                     Entity = null,
                     IsSuccess = false,
@@ -136,9 +136,9 @@ namespace Vezeeta.Application.Services.DoctorServices
 
 
 
-            return new ResultView<DoctorWithImageDto>
+            return new ResultView<DoctorDto>
             {
-                Entity = _mapper.Map<DoctorWithImageDto>(NewDoctor),
+                Entity = _mapper.Map<DoctorDto>(NewDoctor),
                 IsSuccess = true,
                 Message = " The Doctor Created Successfully"
             };
