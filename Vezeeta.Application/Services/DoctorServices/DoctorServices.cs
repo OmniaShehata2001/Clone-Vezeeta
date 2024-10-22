@@ -25,10 +25,11 @@ namespace Vezeeta.Application.Services.DoctorServices
         private readonly IDoctorWorkingPlaceRepository _doctorWorkingPlaceRepository;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly ITimeSlotRepository _timeSlotRepository;
+        private readonly IWorkingPlaceImagesRepository _workingPlaceImagesRepository;
 
         public DoctorServices(IDoctorRepository doctorRepository, IMapper mapper , IDoctorSubSpecialtyRepository doctorSubSpecialtyRepository,
             IWorkingPlaceRepository workingPlaceRepository , IDoctorWorkingPlaceRepository doctorWorkingPlaceRepository
-            ,IAppointmentRepository appointmentRepository , ITimeSlotRepository timeSlotRepository) 
+            ,IAppointmentRepository appointmentRepository , ITimeSlotRepository timeSlotRepository , IWorkingPlaceImagesRepository workingPlaceImagesRepository) 
         {
             _doctorRepository = doctorRepository;
             _mapper = mapper;
@@ -37,6 +38,7 @@ namespace Vezeeta.Application.Services.DoctorServices
             _doctorWorkingPlaceRepository = doctorWorkingPlaceRepository;
             _appointmentRepository = appointmentRepository;
             _timeSlotRepository = timeSlotRepository;
+            _workingPlaceImagesRepository = workingPlaceImagesRepository;
         }
         public async Task<ResultView<DoctorDto>> Create(DoctorDto Doctordto)
         {
@@ -53,16 +55,6 @@ namespace Vezeeta.Application.Services.DoctorServices
             }
 
             var DoctorModel = _mapper.Map<Doctor>(Doctordto);
-
-
-            //using var datastream = new MemoryStream();
-            //await Doctordto.DoctorImage.CopyToAsync(datastream);
-            //var ImgToByts = datastream.ToArray();
-            //string ImgToBytsString = Convert.ToBase64String(ImgToByts);
-            //DoctorModel.DoctorImage = ImgToBytsString;
-
-
-
             var NewDoctor = await _doctorRepository.Createasync(_mapper.Map<Doctor>(Doctordto));
             await _doctorRepository.SaveAsync();
 
@@ -94,6 +86,15 @@ namespace Vezeeta.Application.Services.DoctorServices
                         await _workingPlaceRepository.SaveAsync();
                         var DrWorkingPlaceDto = new DoctorWorkingPlaceDto { DoctorId = NewDoctor.Id, WorkingPlaceId = NewWorkingPlace.Id };
                         var NewDrWorkingPlace = await _doctorWorkingPlaceRepository.Createasync(_mapper.Map<DoctorWorkingPlace>(DrWorkingPlaceDto));
+                        if (Doctordto.WorkingPlaceImages is not null)
+                        {
+                            foreach(var image in Doctordto.WorkingPlaceImages)
+                            {
+                                var NewImageDto = new WorkingPlaceImagesDto { ImgPath = image, WorkingPlaceId = NewWorkingPlace.Id };
+                                var NewImage = await _workingPlaceImagesRepository.Createasync(_mapper.Map<WorkingPlaceImages>(NewImageDto));
+                            }
+                            await _workingPlaceImagesRepository.SaveAsync();
+                        }
                     }
                     else
                     {
@@ -119,7 +120,7 @@ namespace Vezeeta.Application.Services.DoctorServices
                         appointment.DoctorId = NewDoctor.Id;
                         var NewAppointment = await _appointmentRepository.Createasync(_mapper.Map<Appointment>(appointment));
                         await _appointmentRepository.SaveAsync();
-                        if (AppointmentExist.TimeSlots is not null)
+                        if (appointment.TimeSlots is not null)
                         {
                             foreach (var time in appointment.TimeSlots)
                             {
@@ -127,10 +128,11 @@ namespace Vezeeta.Application.Services.DoctorServices
                                 var NewTime = await _timeSlotRepository.Createasync(_mapper.Map<TimeSlot>(time));
                             }
                         }
+                        await _timeSlotRepository.SaveAsync();
                     }
                 }
-                await _timeSlotRepository.SaveAsync();
             }
+
 
 
 

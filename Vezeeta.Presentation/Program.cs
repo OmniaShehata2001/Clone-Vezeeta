@@ -54,6 +54,8 @@ namespace Vezeeta.Presentation
             builder.Services.AddScoped<IDoctorReviewsRepository,DoctorReviewsRepository>();
             builder.Services.AddScoped<IDoctorReviewesServices,DoctorReviewsServices>();
             builder.Services.AddScoped<IWorkingPlaceImagesRepository,WorkingPlaceImagesRepository>();
+            builder.Services.AddScoped<ISubSpecialtyRepository,SubSpecialtyRepository>();
+            builder.Services.AddScoped<ISubSpecialtyServices,SubSpecialtyServices>();
 
 
 

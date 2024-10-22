@@ -77,7 +77,7 @@ namespace Vezeeta.Application.Services.Specialty_Services
 
         public async Task<ResultDataList<SubSpecialtyDto>> GetAll()
         {
-            var SubSpecialties = await _subSpecialtyRepository.GetAllasync();
+            var SubSpecialties = (await _subSpecialtyRepository.GetAllasync()).Where(s => s.IsDeleted == false);
             if(SubSpecialties is null)
             {
                 return new ResultDataList<SubSpecialtyDto>
@@ -113,8 +113,37 @@ namespace Vezeeta.Application.Services.Specialty_Services
             };
         }
 
+        public async Task<ResultDataList<SubSpecialtyDto>> GetSubSpecialtyBySpecId(int specId)
+        {
+            var SubSpecialties = await _subSpecialtyRepository.GetSubSpecialtyBySpecId(specId);
+            if(SubSpecialties is null)
+            {
+                return new ResultDataList<SubSpecialtyDto>{
+                   Entities = null,
+                   Count = 0
+                };
+            }
+            return new ResultDataList<SubSpecialtyDto>
+            {
+                Entities = _mapper.Map<List<SubSpecialtyDto>>(SubSpecialties),
+                Count = SubSpecialties.Count()
+            };
+
+            
+        }
+
         public async Task<ResultView<SubSpecialtyDto>> Update(SubSpecialtyDto subSpecialtyDto)
         {
+            //var SubSpecExist = (await _subSpecialtyRepository.GetAllasync()).FirstOrDefault(s => s.Id == subSpecialtyDto.Id);
+            //if(SubSpecExist is null)
+            //{
+            //    return new ResultView<SubSpecialtyDto>
+            //    {
+            //        Entity = null,
+            //        IsSuccess = false,
+            //        Message = "The SubSpecialty Not Found"
+            //    };
+            //}
             var UpdatedSubSpec = await _subSpecialtyRepository.Updateasync(_mapper.Map<SubSpecialty>(subSpecialtyDto));
             await _subSpecialtyRepository.SaveAsync();
             return new ResultView<SubSpecialtyDto>

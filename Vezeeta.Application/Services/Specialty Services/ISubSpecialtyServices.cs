@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vezeeta.Dtos.DTOS.SubSpecialtyDtos;
 using Vezeeta.Dtos.Result;
+using Vezeeta.Models;
 
 namespace Vezeeta.Application.Services.Specialty_Services
 {
@@ -15,5 +16,6 @@ namespace Vezeeta.Application.Services.Specialty_Services
         Task<ResultView<SubSpecialtyDto>> Delete(int SubSpecialtyId);
         Task<ResultView<SubSpecialtyDto>> GetOne(int SubSpecialtyId);
         Task<ResultDataList<SubSpecialtyDto>> GetAll();
+        Task<ResultDataList<SubSpecialtyDto>> GetSubSpecialtyBySpecId(int specId);
     }
 }

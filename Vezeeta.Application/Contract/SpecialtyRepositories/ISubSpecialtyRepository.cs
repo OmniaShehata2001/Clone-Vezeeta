@@ -9,5 +9,6 @@ namespace Vezeeta.Application.Contract.SpecialtyRepositories
 {
     public interface ISubSpecialtyRepository : IRepository<SubSpecialty , int >
     {
+        Task<IQueryable<SubSpecialty>> GetSubSpecialtyBySpecId(int specId);
     }
 }

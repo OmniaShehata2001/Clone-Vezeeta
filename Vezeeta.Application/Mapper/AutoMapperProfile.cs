@@ -33,6 +33,9 @@ namespace Vezeeta.Application.Mapper
             CreateMap<DoctorReviews , DoctorReviewDto>().ReverseMap();
             CreateMap<WorkingPlace,WorkingPlaceDto>().ReverseMap();
             CreateMap<DoctorWorkingPlace,DoctorWorkingPlaceDto>().ReverseMap();
+            CreateMap<SubSpecialty, SubSpecialtyDto>().ReverseMap();
+            CreateMap<DoctorReviewDto, DoctorReviews>().ReverseMap();
+            CreateMap<WorkingPlaceImages,WorkingPlaceImagesDto>().ReverseMap();
 
         }
     }

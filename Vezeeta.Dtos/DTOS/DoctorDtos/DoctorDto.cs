@@ -24,9 +24,11 @@ namespace Vezeeta.Dtos.DTOS.DoctorDtos
         public int? AppointmentDurationMinutes { get; set; }
         public int CountryId { get; set; }
         public int SpecId { get; set; }
+        public string? DoctorImage {  get; set; }
         public Gender Gender { get; set; }
         public ICollection<AppointmentDto> AppointmentDtos { get; set;}
         public ICollection<WorkingPlaceDto> WorkingPlaceDtos { get;set; }
         public ICollection<int>? doctorSubSpecialtyDtos { get; set; }
+        public ICollection<string>? WorkingPlaceImages { get; set; }
     }
 }
