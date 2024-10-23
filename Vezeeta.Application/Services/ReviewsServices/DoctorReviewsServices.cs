@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.Features;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,7 +75,7 @@ namespace Vezeeta.Application.Services.ReviewsServices
                 Comment = s.Comment,
                 Id = s.Id,
                 Rating = s.Rating,
-                DoctorId = s.Id,
+                DoctorId = s.DoctorId,
                 UserId = s.UserId,
             }).ToList();
             return new ResultDataList<DoctorReviewDto>()
@@ -83,6 +84,32 @@ namespace Vezeeta.Application.Services.ReviewsServices
                 Count = Reviews.Count()
             };
 
+        }
+
+        public async Task<ResultDataList<DoctorReviewDto>> GetByDoctorId(int doctorReviewId, int pageNumber, int Items)
+        {
+            var Reviews = await _doctorReviewsRepository.GetReviewsByDrId(doctorReviewId);
+            var ReviewsDto = Reviews.Skip(Items * (pageNumber - 1)).Take(Items).Select(s => new DoctorReviewDto
+            {
+                Comment = s.Comment,
+                Id = s.Id,
+                Rating = s.Rating,
+                DoctorId = s.DoctorId,
+                UserId = s.UserId
+            }).ToList();
+            if (Reviews is null)
+            {
+                return new ResultDataList<DoctorReviewDto>()
+                {
+                    Entities = null,
+                    Count = 0
+                };
+            }
+            return new ResultDataList<DoctorReviewDto>
+            {
+                Entities = ReviewsDto,
+                Count = Reviews.Count()
+            };
         }
 
         public async Task<ResultView<DoctorReviewDto>> GetOne(int doctorReviewId)

@@ -16,5 +16,6 @@ namespace Vezeeta.Application.Services.ReviewsServices
         Task<ResultView<DoctorReviewDto>> Delete(int doctorReviewId);
         Task<ResultView<DoctorReviewDto>> GetOne(int doctorReviewId);
         Task<ResultDataList<DoctorReviewDto>> GetAll(int pageNumber, int Items);
+        Task<ResultDataList<DoctorReviewDto>> GetByDoctorId(int doctorReviewId , int pageNumber, int Items);
     }
 }

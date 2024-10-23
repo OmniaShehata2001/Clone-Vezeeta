@@ -9,5 +9,6 @@ namespace Vezeeta.Application.Contract.ReviewsRepositories
 {
     public interface IDoctorReviewsRepository : IRepository<DoctorReviews , int>
     {
+        Task<IQueryable<DoctorReviews>> GetReviewsByDrId(int DoctorId);
     }
 }

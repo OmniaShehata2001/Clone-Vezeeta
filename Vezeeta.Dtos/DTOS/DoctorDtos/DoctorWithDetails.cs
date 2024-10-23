@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +10,9 @@ using Vezeeta.Models;
 
 namespace Vezeeta.Dtos.DTOS.DoctorDtos
 {
-    public class DoctorWithImageDto
+    public class DoctorWithDetails
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string AboutDoctor { get; set; }
@@ -23,10 +23,12 @@ namespace Vezeeta.Dtos.DTOS.DoctorDtos
         public int? AppointmentDurationMinutes { get; set; }
         public int CountryId { get; set; }
         public int SpecId { get; set; }
+        public string? DoctorImage { get; set; }
         public Gender Gender { get; set; }
-        public IFormFile? DoctorImage { get; set; }
         public ICollection<AppointmentDto> AppointmentDtos { get; set; }
         public ICollection<WorkingPlaceDto> WorkingPlaceDtos { get; set; }
-        public ICollection<int>? doctorSubSpecialtyDtos { get; set; }
+        public ICollection<SubSpecialtyDto>? SubSpecialtyDtos { get; set; }
+        public ICollection<WorkingPlaceImagesDto>? WorkingPlaceImages { get; set; }
+        public ICollection<TimeSlotDto> TimeSlotDtos { get; set;}
     }
 }

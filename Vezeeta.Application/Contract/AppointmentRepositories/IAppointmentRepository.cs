@@ -9,5 +9,6 @@ namespace Vezeeta.Application.Contract.AppointmentRepositories
 {
     public interface IAppointmentRepository : IRepository<Appointment , int>
     {
+        Task<IQueryable<Appointment>> GetAppByDoctorId(int DoctorId);
     }
 }

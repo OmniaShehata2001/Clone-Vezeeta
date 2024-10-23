@@ -9,5 +9,6 @@ namespace Vezeeta.Application.Contract.WorkingPlaceRepositories
 {
     public interface IWorkingPlaceRepository : IRepository<WorkingPlace , int>
     {
+        Task<IQueryable<WorkingPlace>> GetWorkingPlaceByDoctorId(int DoctorId);
     }
 }
