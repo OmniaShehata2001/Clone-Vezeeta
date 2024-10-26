@@ -24,7 +24,7 @@ namespace Vezeeta.Application.Mapper
             CreateMap<CountriesImages,CountryImagesDto>().ReverseMap();
             CreateMap<CountriesImagesDTos , Countries>().ReverseMap();
             CreateMap<Specialty, SpecialtyDto>().ReverseMap();
-            CreateMap<DoctorWithImageDto , Doctor>().ReverseMap();
+            CreateMap<DoctorWithDetails,Doctor>().ReverseMap();
             CreateMap<DoctorDto, Doctor>().ReverseMap();
             CreateMap<DoctorSubSpecialties,DoctorSubSpecialtyDto>().ReverseMap();
             CreateMap<SubSpecialty , SubSpecialtyDto>().ReverseMap();

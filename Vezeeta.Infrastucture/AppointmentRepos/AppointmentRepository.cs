@@ -10,7 +10,7 @@ using Vezeeta.Models;
 
 namespace Vezeeta.Infrastucture.AppointmentRepos
 {
-    public class AppointmentRepository : Repository<Appointment , int> , IAppointmentRepository
+    public class AppointmentRepository : Repository<Appointment, int>, IAppointmentRepository
     {
         private readonly VezeetaContext _vezeetaContext;
 
@@ -23,3 +23,5 @@ namespace Vezeeta.Infrastucture.AppointmentRepos
         {
             return Task.FromResult(_vezeetaContext.Appointments.Where(s => s.DoctorId == DoctorId && s.IsDeleted == false));
         }
+    }
+}

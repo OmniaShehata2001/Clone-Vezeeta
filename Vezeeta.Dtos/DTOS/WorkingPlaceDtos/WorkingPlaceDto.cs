@@ -12,5 +12,6 @@ namespace Vezeeta.Dtos.DTOS.WorkingPlaceDtos
         public string Name { get; set; }
         public string Area { get; set; }
         public string City { get; set; }
+        public ICollection<WorkingPlaceImagesDto> Images { get; set; }
     }
 }

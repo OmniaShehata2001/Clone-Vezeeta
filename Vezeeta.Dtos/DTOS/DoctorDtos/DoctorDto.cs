@@ -14,6 +14,7 @@ namespace Vezeeta.Dtos.DTOS.DoctorDtos
 {
     public class DoctorDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string AboutDoctor { get; set; }
@@ -30,5 +31,6 @@ namespace Vezeeta.Dtos.DTOS.DoctorDtos
         public ICollection<WorkingPlaceDto> WorkingPlaceDtos { get;set; }
         public ICollection<int>? doctorSubSpecialtyDtos { get; set; }
         public ICollection<string>? WorkingPlaceImages { get; set; }
+        public ICollection<TeleAppointmentDto>? TeleAppointmentDtos { get; set;}
     }
 }

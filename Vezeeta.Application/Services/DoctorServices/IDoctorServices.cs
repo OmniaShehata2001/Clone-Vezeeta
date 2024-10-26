@@ -13,7 +13,7 @@ namespace Vezeeta.Application.Services.DoctorServices
         Task<ResultView<DoctorDto>> Create(DoctorDto Doctordto);
         Task<ResultView<DoctorDto>> Update(DoctorDto Doctordto);
         Task<ResultView<DoctorDto>> Delete(int DoctorId);
-        Task<ResultView<DoctorDto>> GetOne(int DoctorId);
-        Task<ResultDataList<DoctorDto>> GetAll(int PageNumber, int Items);
+        Task<ResultView<DoctorWithDetails>> GetOne(int DoctorId);
+        Task<ResultDataList<DoctorWithDetails>> GetAll(int PageNumber, int Items);
     }
 }
