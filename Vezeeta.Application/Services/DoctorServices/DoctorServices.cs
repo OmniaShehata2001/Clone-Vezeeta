@@ -142,6 +142,7 @@ namespace Vezeeta.Application.Services.DoctorServices
                             foreach (var time in appointment.TimeSlots)
                             {
                                 time.AppointId = NewAppointment.Id;
+                                time.IsBooked = false;
                                 var NewTime = await _timeSlotRepository.Createasync(_mapper.Map<TimeSlot>(time));
                             }
                             await _timeSlotRepository.SaveAsync();
@@ -169,6 +170,7 @@ namespace Vezeeta.Application.Services.DoctorServices
                             foreach (var time in appointment.TimeSlots)
                             {
                                 time.TeleAppointId = NewAppointment.Id;
+                                time.IsBooked = false;
                                 var NewTime = await _teleTimeSlotRepository.Createasync(_mapper.Map<TeleTimeSlot>(time));
                             }
                             await _teleTimeSlotRepository.SaveAsync();
@@ -566,6 +568,7 @@ namespace Vezeeta.Application.Services.DoctorServices
                             foreach (var time in appointment.TimeSlots)
                             {
                                 time.AppointId = NewAppointment.Id;
+                                time.IsBooked = false;
                                 var NewTime = await _timeSlotRepository.Createasync(_mapper.Map<TimeSlot>(time));
                             }
                             await _timeSlotRepository.SaveAsync();
@@ -617,6 +620,7 @@ namespace Vezeeta.Application.Services.DoctorServices
                             foreach (var time in appointment.TimeSlots)
                             {
                                 time.TeleAppointId = NewAppointment.Id;
+                                time.IsBooked = false;
                                 var NewTime = await _teleTimeSlotRepository.Createasync(_mapper.Map<TeleTimeSlot>(time));
                             }
                             await _teleTimeSlotRepository.SaveAsync();

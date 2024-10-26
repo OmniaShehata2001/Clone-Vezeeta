@@ -10,6 +10,7 @@ namespace Vezeeta.Models
     public class TeleTimeSlot : BaseEntity
     {
         public TimeSpan Time { get; set; }
+        public bool IsBooked { get; set; }
         [ForeignKey("TeleAppointments")]
         public int AppointId { get; set; }
         public TeleAppointments TeleAppointments { get; set; }

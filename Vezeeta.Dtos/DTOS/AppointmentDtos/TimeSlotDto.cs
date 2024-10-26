@@ -10,6 +10,7 @@ namespace Vezeeta.Dtos.DTOS.AppointmentDtos
     public class TimeSlotDto
     {
         public int Id { get; set; }
+        public bool IsBooked { get; set; }
         public TimeSpan Time { get; set; }
         public int AppointId { get; set; }
 

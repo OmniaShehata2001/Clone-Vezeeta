@@ -35,7 +35,8 @@ namespace Vezeeta.Presentation
             });
 
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                  .AddEntityFrameworkStores<VezeetaContext>();
+                  .AddEntityFrameworkStores<VezeetaContext>()
+                      .AddDefaultTokenProviders();
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddScoped<ICountriesRepository, CountriesRepositories>();
@@ -56,6 +57,8 @@ namespace Vezeeta.Presentation
             builder.Services.AddScoped<IWorkingPlaceImagesRepository,WorkingPlaceImagesRepository>();
             builder.Services.AddScoped<ISubSpecialtyRepository,SubSpecialtyRepository>();
             builder.Services.AddScoped<ISubSpecialtyServices,SubSpecialtyServices>();
+            builder.Services.AddScoped<ITeleAppointmentRepository, TeleAppointmentRepository>();
+            builder.Services.AddScoped<ITeleTimeSlotRepository, TeleTimeSlotRepository>();
 
 
 

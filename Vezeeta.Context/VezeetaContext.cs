@@ -35,7 +35,7 @@ namespace Vezeeta.Context
         public DbSet<SubSpecialty> SubSpecialty { get; set; }
         public DbSet<DoctorSubSpecialties> DoctorSubSpecialties { get; set; }
         public DbSet<SubServiceImages> SubServiceImages { get; set; }
-        public VezeetaContext(DbContextOptions dbContextOptions) : base(dbContextOptions) { }
+        public VezeetaContext(DbContextOptions<VezeetaContext> dbContextOptions) : base(dbContextOptions) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
