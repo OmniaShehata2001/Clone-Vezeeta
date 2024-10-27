@@ -2,17 +2,20 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Vezeeta.Application.Contract.AppointmentRepositories;
+using Vezeeta.Application.Contract.BookingRepositories;
 using Vezeeta.Application.Contract.CountriesRepositries;
 using Vezeeta.Application.Contract.DoctorRepositories;
 using Vezeeta.Application.Contract.ReviewsRepositories;
 using Vezeeta.Application.Contract.SpecialtyRepositories;
 using Vezeeta.Application.Contract.WorkingPlaceRepositories;
+using Vezeeta.Application.Services.BookingServices;
 using Vezeeta.Application.Services.Countries_Services;
 using Vezeeta.Application.Services.DoctorServices;
 using Vezeeta.Application.Services.ReviewsServices;
 using Vezeeta.Application.Services.Specialty_Services;
 using Vezeeta.Context;
 using Vezeeta.Infrastucture.AppointmentRepos;
+using Vezeeta.Infrastucture.BookingRepos;
 using Vezeeta.Infrastucture.CountriesRepos;
 using Vezeeta.Infrastucture.DoctorRepos;
 using Vezeeta.Infrastucture.ReviewsRepos;
@@ -59,7 +62,10 @@ namespace Vezeeta.Presentation
             builder.Services.AddScoped<ISubSpecialtyServices,SubSpecialtyServices>();
             builder.Services.AddScoped<ITeleAppointmentRepository, TeleAppointmentRepository>();
             builder.Services.AddScoped<ITeleTimeSlotRepository, TeleTimeSlotRepository>();
-
+            builder.Services.AddScoped<IDoctorBookingRepository,DoctorBookingRepository>();
+            builder.Services.AddScoped<IDoctorBookingServices,DoctorBookingServices>();
+            builder.Services.AddScoped<ITeleBookingRepository, TeleBookingRepository>();
+            builder.Services.AddScoped<ITeleBookingServices , TeleBookingServices>();
 
 
 

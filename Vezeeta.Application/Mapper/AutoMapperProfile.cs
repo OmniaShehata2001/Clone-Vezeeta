@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vezeeta.Dtos.DTOS.AppointmentDtos;
+using Vezeeta.Dtos.DTOS.BookingDtos;
 using Vezeeta.Dtos.DTOS.CountryDtos;
 using Vezeeta.Dtos.DTOS.DoctorDtos;
 using Vezeeta.Dtos.DTOS.ReviewsDtos;
@@ -36,7 +37,8 @@ namespace Vezeeta.Application.Mapper
             CreateMap<SubSpecialty, SubSpecialtyDto>().ReverseMap();
             CreateMap<DoctorReviewDto, DoctorReviews>().ReverseMap();
             CreateMap<WorkingPlaceImages,WorkingPlaceImagesDto>().ReverseMap();
-
+            CreateMap<DoctorBooking , DoctorBookingDto>().ReverseMap();
+            CreateMap<TeleBookingDto, TeleBooking>().ReverseMap();
         }
     }
 }
