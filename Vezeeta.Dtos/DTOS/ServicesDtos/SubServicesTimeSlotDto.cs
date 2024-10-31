@@ -10,6 +10,7 @@ namespace Vezeeta.Dtos.DTOS.ServicesDtos
     {
         public int Id { get; set; }
         public TimeSpan Time { get; set; }
+        public bool IsBooked { get; set; }
         public int SubServiceAppId { get; set; }
 
     }

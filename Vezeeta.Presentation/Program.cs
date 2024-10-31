@@ -6,12 +6,14 @@ using Vezeeta.Application.Contract.BookingRepositories;
 using Vezeeta.Application.Contract.CountriesRepositries;
 using Vezeeta.Application.Contract.DoctorRepositories;
 using Vezeeta.Application.Contract.ReviewsRepositories;
+using Vezeeta.Application.Contract.ServicesRepositories;
 using Vezeeta.Application.Contract.SpecialtyRepositories;
 using Vezeeta.Application.Contract.WorkingPlaceRepositories;
 using Vezeeta.Application.Services.BookingServices;
 using Vezeeta.Application.Services.Countries_Services;
 using Vezeeta.Application.Services.DoctorServices;
 using Vezeeta.Application.Services.ReviewsServices;
+using Vezeeta.Application.Services.ServicesServices;
 using Vezeeta.Application.Services.Specialty_Services;
 using Vezeeta.Context;
 using Vezeeta.Infrastucture.AppointmentRepos;
@@ -19,6 +21,7 @@ using Vezeeta.Infrastucture.BookingRepos;
 using Vezeeta.Infrastucture.CountriesRepos;
 using Vezeeta.Infrastucture.DoctorRepos;
 using Vezeeta.Infrastucture.ReviewsRepos;
+using Vezeeta.Infrastucture.ServicesRepos;
 using Vezeeta.Infrastucture.SpecialtyRepos;
 using Vezeeta.Infrastucture.WorkingPlaceRepos;
 using Vezeeta.Models;
@@ -66,7 +69,17 @@ namespace Vezeeta.Presentation
             builder.Services.AddScoped<IDoctorBookingServices,DoctorBookingServices>();
             builder.Services.AddScoped<ITeleBookingRepository, TeleBookingRepository>();
             builder.Services.AddScoped<ITeleBookingServices , TeleBookingServices>();
-
+            builder.Services.AddScoped<ISubServicesRepository,SubServicesRepository>();
+            builder.Services.AddScoped<IServicesRepository, SevicesRepository>();
+            builder.Services.AddScoped<ISubServicesAppointmentRepository, SubServicesAppointmentRepository>();
+            builder.Services.AddScoped<ISubServicesBookingRepository,SubServicesBookingRepository>();
+            builder.Services.AddScoped<ISubServicesImagesRepository, SubServicesImagesRepository>();
+            builder.Services.AddScoped<ISubServicesReviewsRepository, SubServicesReviewsRepository>();
+            builder.Services.AddScoped<ISubServicesTimeSlotRepository,SubServicesTimesSlotRepository>();
+            builder.Services.AddScoped<IServicesServices, ServicesServices>();
+            builder.Services.AddScoped<ISubServicesServices,SubServicesServices>();
+            builder.Services.AddScoped<ISubServicesReviewsServices, SubServicesReviewsServices>();
+            builder.Services.AddScoped<ISubServicesBookingServices, SubServicesBookingServices>();
 
 
 

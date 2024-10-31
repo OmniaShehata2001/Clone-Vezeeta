@@ -10,6 +10,7 @@ namespace Vezeeta.Models
     public class SubServicesTimeSlot : BaseEntity
     {
         public TimeSpan Time { get; set; }
+        public bool IsBooked { get; set; }
         [ForeignKey("SubServicesAppointments")]
         public int SubServiceAppId { get; set; }
         public SubServicesAppointments SubServicesAppointments { get; set; }
