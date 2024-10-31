@@ -9,6 +9,7 @@ using Vezeeta.Dtos.DTOS.BookingDtos;
 using Vezeeta.Dtos.DTOS.CountryDtos;
 using Vezeeta.Dtos.DTOS.DoctorDtos;
 using Vezeeta.Dtos.DTOS.ReviewsDtos;
+using Vezeeta.Dtos.DTOS.ServicesDtos;
 using Vezeeta.Dtos.DTOS.SpecialtyDtos;
 using Vezeeta.Dtos.DTOS.SubSpecialtyDtos;
 using Vezeeta.Dtos.DTOS.WorkingPlaceDtos;
@@ -39,6 +40,13 @@ namespace Vezeeta.Application.Mapper
             CreateMap<WorkingPlaceImages,WorkingPlaceImagesDto>().ReverseMap();
             CreateMap<DoctorBooking , DoctorBookingDto>().ReverseMap();
             CreateMap<TeleBookingDto, TeleBooking>().ReverseMap();
+            CreateMap<ServicesDto, Models.Services>().ReverseMap();
+            CreateMap<SubServices, SubServicesDto>().ReverseMap();
+            CreateMap<SubServiceReview,SubServicesReviewsDto>().ReverseMap();
+            CreateMap<SubServicesImagesDto, SubServiceImages>().ReverseMap();
+            CreateMap<SubServicesAppointments,SubServicesAppointmentDto>().ReverseMap();
+            CreateMap<SubServicesBooking,SubServicesBookingDto>().ReverseMap();
+            CreateMap<SubServicesTimeSlot,SubServicesTimeSlotDto>().ReverseMap();
         }
     }
 }

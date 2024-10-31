@@ -34,7 +34,7 @@ namespace Vezeeta.Application.Services.ServicesServices
                 .FirstOrDefault(s => s.Name == subServicesDto.Name && s.ServicePlaceAddress == subServicesDto.ServicePlaceAddress 
                 && s.ServicePlaceName == subServicesDto.ServicePlaceAddress); 
 
-            if(SubServ is null)
+            if(SubServ is not null)
             {
                 return new ResultView<SubServicesDto>()
                 {
@@ -47,16 +47,16 @@ namespace Vezeeta.Application.Services.ServicesServices
             var NewSubServ = await _subServicesRepository.Createasync(_mapper.Map<SubServices>(subServicesDto));
             await _subServicesRepository.SaveAsync();
 
-            if(subServicesDto.SubServicesImages != null)
-            {
-                foreach(var image in subServicesDto.SubServicesImages)
-                {
-                        var imageModel = _mapper.Map<SubServiceImages>(image);
-                        imageModel.SubServiceId = NewSubServ.Id;
-                        var NewImage = await _subServicesImagesRepository.Createasync(imageModel);
-                }
-                await _subServicesImagesRepository.SaveAsync();
-            }
+            //if(subServicesDto.SubServiceImages != null)
+            //{
+            //    foreach(var image in subServicesDto.SubServiceImages)
+            //    {
+            //            var imageModel = _mapper.Map<SubServiceImages>(image);
+            //            imageModel.SubServiceId = NewSubServ.Id;
+            //            var NewImage = await _subServicesImagesRepository.Createasync(imageModel);
+            //    }
+            //    await _subServicesImagesRepository.SaveAsync();
+            //}
 
 
             if(subServicesDto.SubServicesAppointments is not null)
@@ -76,6 +76,19 @@ namespace Vezeeta.Application.Services.ServicesServices
                             {
                                 var timeModel = _mapper.Map<SubServicesTimeSlot>(time);
                                 timeModel.SubServiceAppId = NewApp.Id;
+                                var Newtime = await _subServicesTimeSlotRepository.Createasync(timeModel);
+                            }
+                            await _subServicesTimeSlotRepository.SaveAsync();
+                        }
+                    }
+                    else
+                    {
+                        if (App.SubServiceTimeSlots is not null)
+                        {
+                            foreach (var time in App.SubServiceTimeSlots)
+                            {
+                                var timeModel = _mapper.Map<SubServicesTimeSlot>(time);
+                                timeModel.SubServiceAppId = AppExist.Id;
                                 var Newtime = await _subServicesTimeSlotRepository.Createasync(timeModel);
                             }
                             await _subServicesTimeSlotRepository.SaveAsync();
@@ -115,10 +128,10 @@ namespace Vezeeta.Application.Services.ServicesServices
             await _subServicesImagesRepository.SaveAsync();
 
 
-            var App = (await _subServicesAppointmentRepository.GetAllasync()).Where(s => s.SubServiceId == id);
+            var App = (await _subServicesAppointmentRepository.GetAllasync()).Where(s => s.SubServiceId == id).ToList();
             foreach (var app in App) 
             {
-                var times = (await _subServicesTimeSlotRepository.GetAllasync()).Where(s => s.SubServiceAppId == app.Id);
+                var times = (await _subServicesTimeSlotRepository.GetAllasync()).Where(s => s.SubServiceAppId == app.Id).ToList();
                 foreach (var time in times)
                 {
                     var Deletedtime = await _subServicesTimeSlotRepository.Deleteasync(time);
@@ -177,7 +190,7 @@ namespace Vezeeta.Application.Services.ServicesServices
                 }
 
                 var images = (await _subServicesImagesRepository.GetAllasync()).Where(s => s.IsDeleted == false && s.SubServiceId == subServ.Id);
-                subServ.SubServicesImages = _mapper.Map<List<SubServicesImagesDto>>(images);
+                subServ.SubServiceImages = _mapper.Map<List<SubServicesImagesDto>>(images);
             }
 
 
@@ -205,7 +218,7 @@ namespace Vezeeta.Application.Services.ServicesServices
             var subservDto = _mapper.Map<SubServicesDto>(subserv);
 
             var images = (await _subServicesImagesRepository.GetAllasync()).Where(s => s.IsDeleted == false && s.SubServiceId == id);
-            subservDto.SubServicesImages = _mapper.Map<IList<SubServicesImagesDto>>(images);
+            subservDto.SubServiceImages = _mapper.Map<IList<SubServicesImagesDto>>(images);
 
             var Apps = (await _subServicesAppointmentRepository.GetAllasync()).Where(s => s.IsDeleted == false && s.SubServiceId == id);
             var appDto = _mapper.Map<List<SubServicesAppointmentDto>>(Apps);
@@ -214,7 +227,7 @@ namespace Vezeeta.Application.Services.ServicesServices
                 var times = (await _subServicesTimeSlotRepository.GetAllasync()).Where(s => s.IsDeleted == false && s.SubServiceAppId == app.Id);
                 app.SubServiceTimeSlots = _mapper.Map<List<SubServicesTimeSlotDto>>(times);
             }
-
+            subservDto.SubServicesAppointments = appDto;
             return new ResultView<SubServicesDto>
             {
                 Entity = subservDto,
@@ -229,7 +242,7 @@ namespace Vezeeta.Application.Services.ServicesServices
             var UpdatedSubServ = await _subServicesRepository.Updateasync(_mapper.Map<SubServices>(subServicesDto));
             await _subServicesRepository.SaveAsync();
 
-            if(subServicesDto.SubServicesImages != null)
+            if(subServicesDto.SubServiceImages != null)
             {
                 var images = (await _subServicesImagesRepository.GetAllasync()).Where(s => s.SubServiceId == UpdatedSubServ.Id);
                 foreach(var image in images)
@@ -238,7 +251,7 @@ namespace Vezeeta.Application.Services.ServicesServices
                 }
                 await _subServicesImagesRepository.SaveAsync();
 
-                foreach (var image in subServicesDto.SubServicesImages)
+                foreach (var image in subServicesDto.SubServiceImages)
                 {
                     var imageModel = _mapper.Map<SubServiceImages>(image);
                     imageModel.SubServiceId = UpdatedSubServ.Id;
@@ -249,10 +262,10 @@ namespace Vezeeta.Application.Services.ServicesServices
 
             if(subServicesDto.SubServicesAppointments != null)
             {
-                var Apps = (await _subServicesAppointmentRepository.GetAllasync()).Where(s => s.SubServiceId == UpdatedSubServ.Id);
+                var Apps = (await _subServicesAppointmentRepository.GetAllasync()).Where(s => s.SubServiceId == UpdatedSubServ.Id).ToList();
                 foreach( var appointment in Apps)
                 {
-                    var times = (await _subServicesTimeSlotRepository.GetAllasync()).Where(s => s.SubServiceAppId == appointment.Id);
+                    var times = (await _subServicesTimeSlotRepository.GetAllasync()).Where(s => s.SubServiceAppId == appointment.Id).ToList();
                     foreach( var timeslot in times)
                     {
                         var Deletedtime = await _subServicesTimeSlotRepository.Deleteasync(timeslot);

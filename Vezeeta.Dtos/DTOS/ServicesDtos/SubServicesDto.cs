@@ -19,7 +19,7 @@ namespace Vezeeta.Dtos.DTOS.ServicesDtos
         public string ServicePlaceAddress { get; set; }
         public string ServicePlaceImage { get; set; }
         public int ServicesId { get; set; }
-        public ICollection<SubServicesImagesDto> SubServicesImages { get; set; }
+        public ICollection<SubServicesImagesDto> SubServiceImages { get; set; }
         public ICollection<SubServicesAppointmentDto> SubServicesAppointments { get; set; }
     }
 }

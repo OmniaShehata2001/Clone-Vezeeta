@@ -57,9 +57,12 @@ namespace Vezeeta.Application.Services.ServicesServices
                 };
             }
 
+            var DeletedReview = await _subServicesReviewsRepository.Deleteasync(Review);
+            await _subServicesReviewsRepository.SaveAsync();
+
             return new ResultView<SubServicesReviewsDto>
             {
-                Entity = _mapper.Map<SubServicesReviewsDto>(Review),
+                Entity = _mapper.Map<SubServicesReviewsDto>(DeletedReview),
                 IsSuccess = true,
                 Message = " The Review Exist"
             };

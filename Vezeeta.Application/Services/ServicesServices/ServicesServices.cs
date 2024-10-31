@@ -24,7 +24,7 @@ namespace Vezeeta.Application.Services.ServicesServices
         public async Task<ResultView<ServicesDto>> Create(ServicesDto servocesDto)
         {
             var serviceExist = (await _servicesRepository.GetAllasync()).FirstOrDefault(s => s.ServiceName == servocesDto.ServiceName);
-            if (serviceExist is null)
+            if (serviceExist is not null)
             {
                 return new ResultView<ServicesDto>
                 {
